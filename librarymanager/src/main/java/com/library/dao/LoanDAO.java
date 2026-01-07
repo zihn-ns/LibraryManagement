@@ -17,4 +17,16 @@ public class LoanDAO {
             return false;
         }
     }
+    public static void main(String[] args) {
+    LoanDAO loanDAO = new LoanDAO();
+    Loan testLoan = new Loan();
+    testLoan.setBookId(1); // ID phải tồn tại trong bảng books
+    testLoan.setBorrowerId(1); // ID phải tồn tại trong bảng borrowers
+    
+    if(loanDAO.borrowBook(testLoan)) {
+        System.out.println("✅ LoanDAO: Mượn sách thành công!");
+    } else {
+        System.err.println("❌ LoanDAO: Thất bại (Kiểm tra ID hoặc Database)!");
+    }
+}
 }

@@ -43,4 +43,13 @@ public class BorrowerDAO {
             return false;
         }
     }
+    public static void main(String[] args) {
+    BorrowerDAO dao = new BorrowerDAO();
+    Borrower testB = new Borrower(0, "User Test", "0987", "test@gmail.com");
+    if(dao.addBorrower(testB)) {
+        System.out.println("✅ BorrowerDAO: Thêm người dùng thành công!");
+    } else {
+        System.err.println("❌ BorrowerDAO: Thất bại!");
+    }
+}
 }
