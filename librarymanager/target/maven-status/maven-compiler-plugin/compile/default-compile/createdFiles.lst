@@ -1,0 +1,15 @@
+com\library\model\Borrower.class
+com\library\dao\UserDAO.class
+com\library\view\user\UserDashboard.class
+com\library\view\login\LoginFrame.class
+com\library\view\admin\ManageBookFrame.class
+com\library\view\user\MyBorrowHistory.class
+com\library\dao\BorrowerDAO.class
+com\library\model\Book.class
+com\library\dao\IBookDAO.class
+com\library\dao\LoanDAO.class
+com\library\model\User.class
+com\library\view\admin\AdminDashboard.class
+com\library\dao\BookDAO.class
+com\library\database\DBConnection.class
+com\library\model\Loan.class
