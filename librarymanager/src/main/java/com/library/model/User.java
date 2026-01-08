@@ -1,28 +1,36 @@
 package com.library.model;
 
 public class User {
+    private int id;
+    private String username;
+    private String password; // Lưu ý: thực tế nên mã hóa, ở đây làm đơn giản
+    private String role;     // "admin" hoặc "user"
 
-    public User(String text, String text2, String string) {
-        //TODO Auto-generated constructor stub
+    public User() {}
+
+    public User(int id, String username, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
-    public User(int int1, String text, String text2, String string) {
-        //TODO Auto-generated constructor stub
+    public User(String username, String password, String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
-    public Object getId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getId'");
-    }
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public Object getUsername() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public Object getRole() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRole'");
-    }
-    
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

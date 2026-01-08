@@ -1,34 +1,45 @@
 package com.library.dao;
 
-import java.util.List;
-
+import com.library.database.DBConnection;
 import com.library.model.User;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
-    public List<User> getAllUsers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
-    }
-
-    public boolean addUser(User u) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addUser'");
-    }
-
-    public boolean updateUser(User u) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
-    }
-
-    public boolean deleteUser(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
-    }
-
+    // Hàm Login quan trọng nhất
     public User login(String username, String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'login'");
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new User(
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getString("role")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Đăng nhập thất bại
     }
-    
+
+    // Các hàm khác (Optional - để sau này dùng)
+    public List<User> getAllUsers() {
+        // ... (Bạn có thể để trống hoặc implement sau)
+        return new ArrayList<>();
+    }
+
+    public boolean addUser(User u) { return false; }
+    public boolean updateUser(User u) { return false; }
+    public boolean deleteUser(int id) { return false; }
 }
