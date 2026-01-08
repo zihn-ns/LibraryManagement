@@ -1,7 +1,11 @@
 package com.library.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.library.database.DBConnection;
-import java.sql.*;
 
 public class ReturnBookDAO {
 
@@ -10,14 +14,11 @@ public class ReturnBookDAO {
      */
     public boolean returnBook(int loanId) {
 
-        String getLoanSql =
-            "SELECT book_id, status FROM loans WHERE id = ?";
+        String getLoanSql = "SELECT book_id, status FROM loans WHERE id = ?";
 
-        String updateLoanSql =
-            "UPDATE loans SET return_date = CURRENT_DATE, status = 'Returned' WHERE id = ?";
+        String updateLoanSql = "UPDATE loans SET return_date = CURRENT_DATE, status = 'Returned' WHERE id = ?";
 
-        String updateBookSql =
-            "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
+        String updateBookSql = "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection()) {
             conn.setAutoCommit(false); // transaction
@@ -57,4 +58,6 @@ public class ReturnBookDAO {
             return false;
         }
     }
+  
+
 }
