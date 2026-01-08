@@ -1,4 +1,5 @@
 package com.library.model;
+
 import java.sql.Date;
 
 public class Loan {
@@ -9,12 +10,29 @@ public class Loan {
     private Date returnDate;
     private String status;
 
-    // Phải có các hàm này thì LoanDAO mới không báo lỗi
+    public Loan() {}
+
+    public Loan(int bookId, int borrowerId) {
+        this.bookId = bookId;
+        this.borrowerId = borrowerId;
+    }
+
+    // Getters and Setters
+    public int getLoanId() { return loanId; }
+    public void setLoanId(int loanId) { this.loanId = loanId; }
+
     public int getBookId() { return bookId; }
     public void setBookId(int bookId) { this.bookId = bookId; }
 
     public int getBorrowerId() { return borrowerId; }
     public void setBorrowerId(int borrowerId) { this.borrowerId = borrowerId; }
-    
-    // Thêm các Getter/Setter cho các thuộc tính còn lại...
+
+    public Date getBorrowDate() { return borrowDate; }
+    public void setBorrowDate(Date borrowDate) { this.borrowDate = borrowDate; }
+
+    public Date getReturnDate() { return returnDate; }
+    public void setReturnDate(Date returnDate) { this.returnDate = returnDate; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }
