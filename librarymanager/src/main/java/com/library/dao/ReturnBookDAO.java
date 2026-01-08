@@ -9,43 +9,42 @@ import com.library.database.DBConnection;
 
 public class ReturnBookDAO {
 
-    /**
-     * Trả sách theo loanId
-     */
     public boolean returnBook(int loanId) {
 
-        String getLoanSql = "SELECT book_id, status FROM loans WHERE id = ?";
+        // ✅ ĐÚNG: loan_id
+        String getLoanSql =
+            "SELECT book_id, status FROM loans WHERE loan_id = ?";
 
-        String updateLoanSql = "UPDATE loans SET return_date = CURRENT_DATE, status = 'Returned' WHERE id = ?";
+        String updateLoanSql =
+            "UPDATE loans SET return_date = CURRENT_DATE, status = 'Returned' WHERE loan_id = ?";
 
-        String updateBookSql = "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
+        // books dùng id → OK
+        String updateBookSql =
+            "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
 
         try (Connection conn = DBConnection.getConnection()) {
-            conn.setAutoCommit(false); // transaction
+            conn.setAutoCommit(false);
 
-            // 1️⃣ Kiểm tra loan
             PreparedStatement ps = conn.prepareStatement(getLoanSql);
             ps.setInt(1, loanId);
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) {
-                System.out.println("❌ Không tìm thấy loan");
+                System.out.println("Khong tim thay loan");
                 return false;
             }
 
             if ("Returned".equals(rs.getString("status"))) {
-                System.out.println("❌ Sách đã được trả rồi");
+                System.out.println("Sach da duoc tra roi");
                 return false;
             }
 
             int bookId = rs.getInt("book_id");
 
-            // 2️⃣ Update loans
             ps = conn.prepareStatement(updateLoanSql);
             ps.setInt(1, loanId);
             ps.executeUpdate();
 
-            // 3️⃣ Cộng lại sách
             ps = conn.prepareStatement(updateBookSql);
             ps.setInt(1, bookId);
             ps.executeUpdate();
@@ -58,6 +57,4 @@ public class ReturnBookDAO {
             return false;
         }
     }
-  
-
 }
