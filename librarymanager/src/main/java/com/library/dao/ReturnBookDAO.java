@@ -57,4 +57,16 @@ public class ReturnBookDAO {
             return false;
         }
     }
+
+    public static void main(String[] args) {
+        ReturnBookDAO dao = new ReturnBookDAO();
+
+        int loanId = 1; // ID lượt mượn có thật trong DB
+
+        if (dao.returnBook(loanId)) {
+            System.out.println("✅ TEST OK: Trả sách thành công");
+        } else {
+            System.out.println("❌ TEST FAIL: Trả sách thất bại");
+        }
+    }
 }
