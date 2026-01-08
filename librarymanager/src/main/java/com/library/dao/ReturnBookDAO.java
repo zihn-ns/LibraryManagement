@@ -12,15 +12,11 @@ public class ReturnBookDAO {
     public boolean returnBook(int loanId) {
 
         // ✅ ĐÚNG: loan_id
-        String getLoanSql =
-            "SELECT book_id, status FROM loans WHERE loan_id = ?";
+        String getLoanSql ="SELECT book_id, status FROM loans WHERE loan_id = ?";
 
-        String updateLoanSql =
-            "UPDATE loans SET return_date = CURRENT_DATE, status = 'Returned' WHERE loan_id = ?";
+        String updateLoanSql = "UPDATE loans SET return_date = CURRENT_DATE, status = 'Returned' WHERE loan_id = ?";
 
-        // books dùng id → OK
-        String updateBookSql =
-            "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
+       String updateBookSql =  "UPDATE books SET available_copies = available_copies + 1 WHERE book_id = ?";
 
         try (Connection conn = DBConnection.getConnection()) {
             conn.setAutoCommit(false);
