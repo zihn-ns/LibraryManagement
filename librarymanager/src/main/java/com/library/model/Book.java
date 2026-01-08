@@ -31,6 +31,14 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
+    public Book(String text, String text2, int int1) {
+        //TODO Auto-generated constructor stub
+    }
+
+    public Book(int int1, String text, String text2, int int2) {
+        //TODO Auto-generated constructor stub
+    }
+
     // --- Getters và Setters (Phải có đầy đủ) ---
     public int getBookId() { return bookId; }
     public void setBookId(int bookId) { this.bookId = bookId; }
@@ -46,4 +54,19 @@ public class Book {
     public void setAuthorName(String authorName) { this.authorName = authorName; }
     public String getCategoryName() { return categoryName; }
     public void setCategoryName(String categoryName) { this.categoryName = categoryName; }
+
+    public Object getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+    }
+
+    public Object getAuthor() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthor'");
+    }
+
+    public Object getYear() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getYear'");
+    }
 }

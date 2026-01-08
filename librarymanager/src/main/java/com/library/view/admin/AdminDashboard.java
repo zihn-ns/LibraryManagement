@@ -1,26 +1,64 @@
 package com.library.view.admin;
-import com.library.view.user.BorrowPanel; // Cái Panel Mượn Sách mình tạo ở bài trước
+
 import javax.swing.*;
+
+import com.library.view.login.LoginFrame;
+
 import java.awt.*;
+
 public class AdminDashboard extends JFrame {
-    private JTabbedPane tabbedPane = new JTabbedPane();
+
     public AdminDashboard() {
-        setTitle("Quản Lý Thư Viện - Admin");
-        setSize(800, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Library Management - Admin Dashboard");
+        setSize(500, 350);
         setLocationRelativeTo(null);
-        
-        initComponents();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(10, 10));
+
+        JLabel title = new JLabel("ADMIN DASHBOARD", JLabel.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 22));
+        add(title, BorderLayout.NORTH);
+
+        JPanel menuPanel = new JPanel(new GridLayout(5, 1, 15, 15));
+
+        JButton btnManageBooks = new JButton("📚 Manage Books");
+        JButton btnManageUsers = new JButton("👤 Manage Users");
+        JButton btnBorrowReturn = new JButton("🔄 Borrow / Return");
+        JButton btnLogout = new JButton("🚪 Logout");
+
+        menuPanel.add(btnManageBooks);
+        menuPanel.add(btnManageUsers);
+        menuPanel.add(btnBorrowReturn);
+        menuPanel.add(btnLogout);
+
+        add(menuPanel, BorderLayout.CENTER);
+
+        // ========= EVENTS =========
+        btnManageBooks.addActionListener(e -> {
+            new ManageBookFrame();
+            dispose();
+        });
+
+        btnManageUsers.addActionListener(e -> {
+            new ManageUserFrame();   // bạn sẽ tạo
+            dispose();
+        });
+
+        btnBorrowReturn.addActionListener(e -> {
+            new ManageBorrowFrame(); // bạn sẽ tạo
+            dispose();
+        });
+
+        btnLogout.addActionListener(e -> {
+            new LoginFrame();
+            dispose();
+        });
+
         setVisible(true);
     }
-    private void initComponents() {
-        // Tab 1: Quản lý Sách (JTable cũ của bạn)
-        // tabbedPane.addTab("Quản Lý Sách", new ManageBookPanel()); 
-        
-        // Tab 2: Mượn Sách (Cái BorrowPanel mình vừa tạo từ BorrowController)
-        tabbedPane.addTab("Mượn Sách", new BorrowPanel());
-        // Tab 3: Lịch sử (Port từ HistoryController)
-        tabbedPane.addTab("Lịch Sử Trả", new JPanel()); // Để trống chờ làm
-        add(tabbedPane);
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(AdminDashboard::new);
     }
 }
+
