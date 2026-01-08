@@ -136,4 +136,19 @@ public class BookDAO implements IBookDAO {
             System.out.println("Book: " + b.getTitle() + " | Author: " + b.getAuthorName() + " | Category: " + b.getCategoryName());
         }
     }
+
+    public boolean updateBook(Book book) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateBook'");
+    }
+
+    public boolean deleteBook(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteBook'");
+    }
+
+    public List<Book> searchBooks(String text) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'searchBooks'");
+    }
 }

@@ -52,4 +52,19 @@ public class BorrowerDAO {
         System.err.println("❌ BorrowerDAO: Thất bại!");
     }
 }
+
+    public List<Borrower> getAllBorrows() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllBorrows'");
+    }
+
+    public boolean borrowBook(Borrower b) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'borrowBook'");
+    }
+
+    public boolean returnBook(int borrowId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'returnBook'");
+    }
 }
